@@ -14,7 +14,7 @@ public class AccountManager {
         long number;
 
         do {
-            number = 4_000_000_000_000_000L + random.nextLong(100_000_000_000L);
+            number = 4_000_000_000_000_000L + random.nextLong(10_000_000_000L);
         } while (datastore.accountIds.contains(number));
         return number;
     }
