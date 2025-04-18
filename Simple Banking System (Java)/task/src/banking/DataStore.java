@@ -1,22 +1,22 @@
 package banking;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 class DataStore {
-    List<Account> allAccounts;
-    Set<Long> accountIds;
+    Map<Long, Account> allAccounts;
 
     public DataStore(){
-        this.allAccounts = new ArrayList<Account>();
-        this.accountIds = new HashSet<>();
+        this.allAccounts = new HashMap<>();
     }
 
     public void addAccount(Account account){
-        allAccounts.add(account);
+        allAccounts.put(account.accountId, account);
+    }
+    public boolean checkAccountExists(long accountId){
+        return allAccounts.containsKey(accountId);
     }
 
+    public Account getAccount(long accountId){
+        return allAccounts.get(accountId);
+    }
 
 }

@@ -2,22 +2,21 @@ package banking;
 
 class Account{
     Long accountId;
-    int accountPin;
+    byte[] accountPinHash;
+    double accountBalance;
 
-    public Account (Long accountId, int accountPin){
-       setAccountId(accountId);
-       setAccountPin(accountPin);
+    public Account (Long accountId, byte[] accountPinHash){
+       this.accountId = accountId;
+       this.accountPinHash = accountPinHash;
+       this.accountBalance = 0;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-    public void setAccountPin(int accountPin) {
-        this.accountPin = accountPin;
+    public byte[] getAccountPintHash(){
+        return this.accountPinHash;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public double getAccountBalance(){
+        return this.accountBalance;
     }
 
 }
