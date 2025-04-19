@@ -21,6 +21,7 @@ class BankViews {
     }
 
     int showLandingPage() {
+        System.out.println("\n");
         System.out.println("1. Create an account");
         System.out.println("2. Log into account");
         System.out.println("0. Exit");
@@ -28,52 +29,45 @@ class BankViews {
     }
 
     long getAccountIdInput() {
-        System.out.print("Enter Account ID: ");
+        System.out.print("Enter your card number:\n");
         return getNumInput();
     }
 
     int getAccountIdPin() {
-        System.out.print("Enter PIN for provided Account ID: ");
+        System.out.print("Enter your PIN:\n");
         return (int) getNumInput();
     }
 
     int showAccountMenu() {
-        System.out.println("\nAccount Menu");
         System.out.println("1. Balance");
         System.out.println("2. Logout");
         System.out.println("0. Exit");
-        System.out.print("Choose an option: ");
         return reader.nextInt();
     }
 
     void showExitMessage() {
-        System.out.println("Exiting Application!");
+        System.out.println("Bye!");
     }
 
     void showAccountCreationMessage( Long accountId, Integer accountPin) {
         System.out.println("Your card has been created");
         System.out.printf("Your card number:\n%d\n", accountId);
-        System.out.printf("Your card PIN:\n%04d\n", accountPin);
+        System.out.printf("Your card PIN:\n%04d", accountPin);
     }
 
     void showLoginSuccessMessage() {
-        System.out.println("You have successfully logged in!");
+        System.out.println("\nYou have successfully logged in!\n");
+    }
+    void showInvalidLoginMessage() {
+        System.out.println("Wrong card number of PIN!");
     }
 
-    void showInvalidPinMessage() {
-        System.out.println("Invalid PIN provided! Sign in failed!");
-    }
-
-    void showInvalidAccountIdMessage() {
-        System.out.println("Account Id does not exist! Sign in failed!");
-    }
-
-    void showAccountBalance(double balance) {
-        System.out.printf("Your card balance is:\n %f\n", balance);
+    void showAccountBalance(int balance) {
+        System.out.printf("Your card balance is:\n %d\n", balance);
     }
 
     void showLogOutMessage() {
-        System.out.println("You have successully logged out!");
+        System.out.println("\nYou have successully logged out!");
     }
 
     void showInvalidChoice(){

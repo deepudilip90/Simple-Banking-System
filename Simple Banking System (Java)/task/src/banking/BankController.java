@@ -1,7 +1,6 @@
 package banking;
 
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -36,23 +35,23 @@ public class BankController {
         }
     }
 
-    private Long createAccountId() {
-        long number;
-        do {
-            number = 4_000_000_000_000_000L + random.nextLong(10_000_000_000L);
-        } while (datastore.allAccounts.containsKey(number));
-        return number;
-    }
+//    private Long createAccountId() {
+//        long number;
+//        do {
+//            number = 4_000_000_000_000_000L + random.nextLong(10_000_000_000L);
+//        } while (datastore.allAccounts.containsKey(number));
+//        return number;
+//    }
 
     private Integer createAccountPin() {
         return random.nextInt(10000);
     }
 
     private void createAccount() {
-        Long accountId = createAccountId();
+        Long accountId = CardNumGenerate.GenerateCardNum();
         Integer accountPin = createAccountPin();
-        Account newAccount = new Account(accountId, getHash(String.valueOf(accountPin))); // [ -94, -89, 34, -33, 103, 65, -123, -76, 90, -28, 117, 42, 30, 125, 84, 68 ]
-        datastore.addAccount(newAccount); // [ -94, -89, 34, -33, 103, 65, -123, -76, 90, -28, 117, 42, 30, 125, 84, 68 ]
+        Account newAccount = new Account(accountId, getHash(String.valueOf(accountPin)));
+        datastore.addAccount(newAccount);
         views.showAccountCreationMessage(accountId, accountPin);
 
     }
@@ -71,10 +70,10 @@ public class BankController {
                     signedIn = handleAccount(curAccount);
                 }
             } else {
-                views.showInvalidPinMessage();
+                views.showInvalidLoginMessage();
             }
         } else {
-            views.showInvalidAccountIdMessage();
+            views.showInvalidLoginMessage();
         }
     }
 
@@ -83,7 +82,7 @@ public class BankController {
         int choice = views.showAccountMenu();
         switch (choice) {
             case 1:
-                double balance = account.getAccountBalance();
+                int balance = account.getAccountBalance();
                 views.showAccountBalance(balance);
                 return true;
             case 2:

@@ -3,7 +3,7 @@ package banking;
 class Account{
     Long accountId;
     byte[] accountPinHash;
-    double accountBalance;
+    int accountBalance;
 
     public Account (Long accountId, byte[] accountPinHash){
        this.accountId = accountId;
@@ -15,7 +15,7 @@ class Account{
         return this.accountPinHash;
     }
 
-    public double getAccountBalance(){
+    public int getAccountBalance(){
         return this.accountBalance;
     }
 
